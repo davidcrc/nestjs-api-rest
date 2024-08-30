@@ -25,3 +25,23 @@ npx prisma init
 ```
 npx prisma migrate dev --name init
 ```
+
+## Add GET Task
+
+```
+nest g mo tasks
+```
+
+```
+nest g co tasks --no-spec
+```
+
+```
+nest g s tasks --no-spec
+```
+
+## Add class validator
+
+```
+npm i --save class-validator class-transformer
+```
