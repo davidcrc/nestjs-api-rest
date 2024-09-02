@@ -6,6 +6,8 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { CreateTaskDto } from './dto/create-task.dto';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Injectable()
 export class TasksService {
@@ -66,6 +68,35 @@ export class TasksService {
 
       return newTask;
     } catch (error) {
+      if (error instanceof Error) {
+        throw new HttpException(
+          error.message,
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        );
+      }
+    }
+  }
+
+  async updateTask(id: number, task: UpdateTaskDto) {
+    const { title, description } = task;
+
+    try {
+      const updatedTask = await this.prismaService.task.update({
+        where: {
+          id,
+        },
+        data: {
+          title,
+          description,
+        },
+      });
+
+      return updatedTask;
+    } catch (error) {
+      if (error instanceof PrismaClientKnownRequestError) {
+        throw new NotFoundException(`Task ${id} not found`);
+      }
+
       if (error instanceof Error) {
         throw new HttpException(
           error.message,

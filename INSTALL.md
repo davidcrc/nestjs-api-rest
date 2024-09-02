@@ -45,3 +45,9 @@ nest g s tasks --no-spec
 ```
 npm i --save class-validator class-transformer
 ```
+
+## Add mapped types for partial
+
+```
+npm i @nestjs/mapped-types
+```
