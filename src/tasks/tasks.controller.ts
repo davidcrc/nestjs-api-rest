@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
@@ -36,5 +37,10 @@ export class TasksController {
     @Body() task: UpdateTaskDto,
   ) {
     return await this.tasksService.updateTask(id, task);
+  }
+
+  @Delete('/:id')
+  async deleteTask(@Param('id', ParseIntPipe) id: number) {
+    return await this.tasksService.deleteTask(id);
   }
 }
