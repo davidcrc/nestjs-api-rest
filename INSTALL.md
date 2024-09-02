@@ -51,3 +51,9 @@ npm i --save class-validator class-transformer
 ```
 npm i @nestjs/mapped-types
 ```
+
+## Add Swager documentation
+
+```
+npm install --save @nestjs/swagger
+```

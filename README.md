@@ -71,3 +71,82 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+# Endpoints de TasksController
+
+## GET /tasks
+
+Obtiene todas las tareas.
+
+### Respuesta
+
+- `200 OK`: Lista de tareas.
+
+## GET /tasks/:id
+
+Obtiene una tarea por su ID.
+
+### Parámetros
+
+- `id`: ID de la tarea.
+
+### Respuesta
+
+- `200 OK`: Tarea solicitada.
+- `404 Not Found`: Si no se encuentra la tarea con el ID proporcionado.
+
+## POST /tasks
+
+Crea una nueva tarea.
+
+### Cuerpo de la solicitud
+
+- `title`: Título de la tarea.
+- `description`: Descripción de la tarea (opcional).
+
+### Respuesta
+
+- `201 Created`: Tarea creada exitosamente.
+
+## PATCH /tasks/:id
+
+Actualiza una tarea por su ID.
+
+### Parámetros
+
+- `id`: ID de la tarea.
+
+### Cuerpo de la solicitud
+
+- `title`: Nuevo título de la tarea (opcional).
+- `description`: Nueva descripción de la tarea (opcional).
+
+### Respuesta
+
+- `200 OK`: Tarea actualizada exitosamente.
+- `404 Not Found`: Si no se encuentra la tarea con el ID proporcionado.
+
+## DELETE /tasks/:id
+
+Elimina una tarea por su ID.
+
+### Parámetros
+
+- `id`: ID de la tarea.
+
+### Respuesta
+
+- `200 OK`: Tarea eliminada exitosamente.
+- `404 Not Found`: Si no se encuentra la tarea con el ID proporcionado.
+
+===
+
+# Endpoints de TasksController
+
+| Método | Ruta       | Descripción                   | Parámetros | Cuerpo de la solicitud                   | Respuesta                                                                          |
+| ------ | ---------- | ----------------------------- | ---------- | ---------------------------------------- | ---------------------------------------------------------------------------------- |
+| GET    | /tasks     | Obtiene todas las tareas      | -          | -                                        | 200 OK: Lista de tareas                                                            |
+| GET    | /tasks/:id | Obtiene una tarea por su ID   | id         | -                                        | 200 OK: Tarea solicitada, 404 Not Found: Si no se encuentra la tarea               |
+| POST   | /tasks     | Crea una nueva tarea          | -          | title, description (opcional)            | 201 Created: Tarea creada exitosamente                                             |
+| PATCH  | /tasks/:id | Actualiza una tarea por su ID | id         | title (opcional), description (opcional) | 200 OK: Tarea actualizada exitosamente, 404 Not Found: Si no se encuentra la tarea |
+| DELETE | /tasks/:id | Elimina una tarea por su ID   | id         | -                                        | 200 OK: Tarea eliminada exitosamente, 404 Not Found: Si no se encuentra la tarea   |
