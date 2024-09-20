@@ -16,6 +16,18 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
+  // Habilitar CORS
+  app.enableCors({
+    origin: ['http://localhost:5173', 'http://localhost:3000'], // Permite varios orígenes
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+
+  // Exponer el documento OpenAPI en formato JSON en una ruta adicional
+  app.getHttpAdapter().get('/api-json', (req, res) => {
+    res.json(document);
+  });
+
   await app.listen(4000);
 }
 bootstrap();
