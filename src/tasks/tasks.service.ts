@@ -8,12 +8,13 @@ import { PrismaService } from '../prisma.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { UpdateTaskDto } from './dto/update-task.dto';
+import { TaskDto } from './dto/task.dto';
 
 @Injectable()
 export class TasksService {
   constructor(private prismaService: PrismaService) {}
 
-  async getTasks() {
+  async getTasks(): Promise<TaskDto[]> {
     try {
       const tasks = await this.prismaService.task.findMany();
 
@@ -28,7 +29,7 @@ export class TasksService {
     }
   }
 
-  async getTask(id: number) {
+  async getTask(id: number): Promise<TaskDto> {
     try {
       const task = await this.prismaService.task.findFirst({
         where: {
@@ -55,7 +56,7 @@ export class TasksService {
     }
   }
 
-  async createTask(task: CreateTaskDto) {
+  async createTask(task: CreateTaskDto): Promise<TaskDto> {
     const { title, description } = task;
 
     try {
@@ -77,7 +78,7 @@ export class TasksService {
     }
   }
 
-  async updateTask(id: number, task: UpdateTaskDto) {
+  async updateTask(id: number, task: UpdateTaskDto): Promise<TaskDto> {
     const { title, description } = task;
 
     try {
@@ -106,7 +107,7 @@ export class TasksService {
     }
   }
 
-  async deleteTask(id: number) {
+  async deleteTask(id: number): Promise<TaskDto> {
     try {
       const deleteTask = await this.prismaService.task.delete({
         where: {
